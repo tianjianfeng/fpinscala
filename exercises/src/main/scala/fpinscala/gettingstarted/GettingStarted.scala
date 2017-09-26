@@ -43,9 +43,20 @@ object MyModule {
     def go(m: Int, prev: Int = 1, prevPrev: Int = 0): Int = {
       if (m == 0) prevPrev
       else if (m == 1) prev
-      else go(m -1, prev, prev + prevPrev)
+      else go(m -1, prev + prevPrev, prev)
     }
     go(n)
+  }
+
+  def fib2 (n: Int): Int = {
+    @tailrec
+    def go(i: Int, n_1: Int, n_2: Int): Int = {
+      if (i == n) n_1 + n_2
+      else go(i+1, n_2, n_1 + n_2)
+    }
+    if (n == 0) 0
+    else if (n == 1) 1
+    else go(2, 0, 1)
   }
 
   // This definition and `formatAbs` are very similar..
